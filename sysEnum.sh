@@ -622,8 +622,6 @@ gtfo_binaries=(
     
 )
 
-# Execute the main function
-main
 
 # Function to gather information about users and groups
 gather_users_groups_info() {
