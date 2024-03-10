@@ -196,6 +196,9 @@ check_sudo_capabilities() {
 
 # Function to list exploitable SUID binaries listed in GTFOBins
 check_exploitable_suid() {
+    echo "#################################################"
+    print_red "#-------) Exploitable SUID Binaries (---------#"
+    echo "#################################################"
     # Loop through each binary in the GTFOBins list
     for binary in "${gtfo_binaries[@]}"; do
         # Check if the binary exists and has the SUID bit set
@@ -237,6 +240,9 @@ check_ld_so_conf_d() {
 
 # Function to check if sudo tokens are available and if a new one can be created
 check_sudo_tokens() {
+    echo "##############################################"
+    print_red "#-------) Check Sudo Tokens (---------#"
+    echo "##############################################"
     sudo -v && print_red "sudo tokens available"
     sudo -n true && echo "sudo token creation possible"
 }
@@ -944,10 +950,7 @@ main() {
 	print_animated_line
 	check_sudo_capabilities
 	echo ""
-
-    echo "##############################################"
-    print_red "#-------) Exploitable SUID Binaries (---------#"
-    echo "##############################################"
+	
 	print_animated_line
 	check_exploitable_suid
 	echo ""
