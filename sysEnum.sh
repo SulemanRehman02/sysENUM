@@ -1,5 +1,29 @@
 #!/bin/bash
 
+#!/bin/bash
+
+animate_text() {
+    text="$1"
+    delay="$2"
+    for ((i=0; i<${#text}; i++)); do
+        echo -n "${text:$i:1}"
+        sleep "$delay"
+    done
+    echo
+}
+
+# ASCII art
+ascii_art="               _____                       
+ ___ _   _ ___| ____|_ __  _   _ _ __ ___  
+/ __| | | / __|  _| | '_ \| | | | '_ \` _ \ 
+\__ \ |_| \__ \ |___| | | | |_| | | | | | |
+|___/\__, |___/_____|_| |_|\__,_|_| |_| |_|
+     |___/                                 "
+
+# Animated printing of ASCII art
+animate_text "$ascii_art" 0.01
+
+
 print_red() {
     echo -e "\e[31m$1\e[0m"
 }
@@ -622,7 +646,6 @@ gtfo_binaries=(
     
 )
 
-
 # Function to gather information about users and groups
 gather_users_groups_info() {
     echo "############################################################"
@@ -814,62 +837,124 @@ list_screen_sessions() {
     tmux ls
 }
 
-# Main function to call other functions
-main() {
+# Function to print animated dotted line in red color
+print_animated_line() {
+    for i in {1..17}; do
+        echo -ne "\e[31m.\e[0m"
+        sleep 0.1
+    done
+    echo ""
+}
 
-    get_os_info
-    echo ""
-    check_path
-    echo ""
-    check_env_details
-    echo ""
-    search_kernel_exploits
-    echo ""
-    check_sudo_vulnerability
-    echo ""
-    check_dmesg_signature
-    echo ""
-    additional_system_enum
-    echo ""
-    check_drives
-    echo ""
-    gather_users_groups_info
-    echo ""
-    gather_host_info
-    echo ""
-    gather_network_info
-    echo ""
-    gather_domain_info
-    echo ""
-    gather_password_lockout_info
-    echo ""
-    gather_service_versions
-    echo ""
-    check_container
-    echo ""
-    check_lxd_group
-    echo ""
-    check_ec2_instance
-    echo ""
-    check_capabilities
-    echo ""
-    check_sensitive_files
-    echo ""
-    check_timers_and_cron
-    echo ""
-    check_services
-    echo ""
-    check_dbus_communication
-    echo ""
-    list_screen_sessions
-    echo ""
-    check_sudo_capabilities
-    echo ""
-    echo "Exploitable SUID Binaries:"
-    check_exploitable_suid
-    echo ""
-    check_sudo_tokens
-    echo ""
+# Main function to call other functions
+main() {                         
+
+	# Call print_animated_line function before each of the specified functions
+	print_animated_line
+	get_os_info
+	echo ""
+
+	print_animated_line
+	check_path
+	echo ""
+
+	print_animated_line
+	check_env_details
+	echo ""
+
+	print_animated_line
+	search_kernel_exploits
+	echo ""
+
+	print_animated_line
+	check_sudo_vulnerability
+	echo ""
+
+	print_animated_line
+	check_dmesg_signature
+	echo ""
+
+	print_animated_line
+	additional_system_enum
+	echo ""
+
+	print_animated_line
+	check_drives
+	echo ""
+
+	print_animated_line
+	gather_users_groups_info
+	echo ""
+
+	print_animated_line
+	gather_host_info
+	echo ""
+
+	print_animated_line
+	gather_network_info
+	echo ""
+
+	print_animated_line
+	gather_domain_info
+	echo ""
+
+	print_animated_line
+	gather_password_lockout_info
+	echo ""
+
+	print_animated_line
+	gather_service_versions
+	echo ""
+
+	print_animated_line
+	check_container
+	echo ""
+
+	print_animated_line
+	check_lxd_group
+	echo ""
+
+	print_animated_line
+	check_ec2_instance
+	echo ""
+
+	print_animated_line
+	check_capabilities
+	echo ""
+
+	print_animated_line
+	check_sensitive_files
+	echo ""
+
+	check_timers_and_cron
+	echo ""
+
+	print_animated_line
+	check_services
+	echo ""
+
+	print_animated_line
+	check_dbus_communication
+	echo ""
+
+	print_animated_line
+	list_screen_sessions
+	echo ""
+
+	print_animated_line
+	check_sudo_capabilities
+	echo ""
+
+    echo "##############################################"
+    print_red "#-------) Exploitable SUID Binaries (---------#"
+    echo "##############################################"
+	print_animated_line
+	check_exploitable_suid
+	echo ""
+
+	print_animated_line
+	check_sudo_tokens
+	echo ""
 
 }
 main
